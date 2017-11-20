@@ -1,0 +1,321 @@
+{
+  "languageModel": {
+    "types": [
+      {
+        "name": "animalType",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "dog",
+              "synonyms": [
+                "dog"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "cat",
+              "synonyms": [
+                "cat"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "mythical_creatures",
+              "synonyms": [
+                "dragon",
+                "unicorn",
+                "cerberus",
+                "chimaera",
+                "fairy",
+                "hippogriff",
+                "grindylow",
+                "ghoul",
+                "gnome",
+                "mermaid",
+                "troll",
+                "phoenix"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "sheddingType",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "low",
+              "synonyms": [
+                "not at all",
+                "a little"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "medium",
+              "synonyms": [
+                "not much"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "high",
+              "synonyms": [
+                "sheds a lot"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "sizeType",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "gigantic",
+              "synonyms": [
+                "huge"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "big",
+              "synonyms": [
+                "large"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "small",
+              "synonyms": [
+                "mini"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "tiny",
+              "synonyms": [
+                "mini"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "temperamentType",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "playful",
+              "synonyms": [
+                "fetch"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "cuddly",
+              "synonyms": [
+                "sleepy",
+                "docile"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "lazy",
+              "synonyms": [
+                "sleepy"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "intents": [
+      {
+        "name": "AMAZON.CancelIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StopIntent",
+        "samples": []
+      },
+      {
+        "name": "PetMatchIntent",
+        "samples": [
+          "find a pet",
+          "match me",
+          "I would like a {animal}",
+          "I prefer {animal}",
+          "I prefer {size}",
+          "{size} {animal}",
+          "I would like a {size} {animal}",
+          "I would like a {size} {temperament} {animal}",
+          "for a {animal}",
+          "a {animal}",
+          "I would like a {size} {temperament} {animal} that {shedding}",
+          "I want a {animal}"
+        ],
+        "slots": [
+          {
+            "name": "animal",
+            "type": "animalType",
+            "samples": [
+              "I want a {animal}",
+              "{animal}",
+              "I want a {size} {animal}",
+              "I want a {size} {temperament} {animal} that {shedding}"
+            ]
+          },
+          {
+            "name": "size",
+            "type": "sizeType",
+            "samples": [
+              "I want {size}"
+            ]
+          },
+          {
+            "name": "temperament",
+            "type": "temperamentType",
+            "samples": [
+              "I like {temperament}",
+              "{temperament}",
+              "{temperament} {animal} "
+            ]
+          },
+          {
+            "name": "shedding",
+            "type": "sheddingType",
+            "samples": [
+              "{shedding}",
+              "I want a {animal} that {shedding}"
+            ]
+          }
+        ]
+      }
+    ],
+    "invocationName": "pet match"
+  },
+  "prompts": [
+    {
+      "id": "Elicit.Intent-PetMatchIntent.IntentSlot-animal",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Which would you like a dog or a cat"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-PetMatchIntent.IntentSlot-size",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "what size do you want?"
+        },
+        {
+          "type": "PlainText",
+          "value": "would you like a giant, big, or small {animal}"
+        },
+        {
+          "type": "PlainText",
+          "value": "what size {animal} would you like, giant, big or small"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-PetMatchIntent.IntentSlot-temperament",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Do you want an animal to play fetch with or one that sleeps all day"
+        },
+        {
+          "type": "PlainText",
+          "value": "Do you want a {animal} that sleeps all day or to play fetch with"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-PetMatchIntent.IntentSlot-shedding",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Which would you like, a {animal} that sheds a lot, not much or not at al"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "intents": [
+      {
+        "name": "PetMatchIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "animal",
+            "type": "animalType",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-PetMatchIntent.IntentSlot-animal"
+            }
+          },
+          {
+            "name": "size",
+            "type": "sizeType",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-PetMatchIntent.IntentSlot-size"
+            }
+          },
+          {
+            "name": "temperament",
+            "type": "temperamentType",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-PetMatchIntent.IntentSlot-temperament"
+            }
+          },
+          {
+            "name": "shedding",
+            "type": "sheddingType",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-PetMatchIntent.IntentSlot-shedding"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
